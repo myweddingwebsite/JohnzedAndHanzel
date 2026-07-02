@@ -380,28 +380,7 @@ footer .credit{
 }
 footer .credit a{color:var(--gold-light);}
 
-/* ============ FLOATING RSVP + MUSIC ============ */
-.floating-rsvp{
-  position:fixed;bottom:26px;right:26px;z-index:900;
-  background:var(--gold-deep);color:var(--white);
-  font-family:var(--caps);font-size:11px;letter-spacing:.16em;text-transform:uppercase;
-  padding:15px 24px;border-radius:30px;box-shadow:0 10px 30px rgba(168,129,60,.4);
-  transition:transform .3s var(--ease), opacity .4s var(--ease);
-  opacity:0;transform:translateY(20px);pointer-events:none;
-}
-.floating-rsvp.show{opacity:1;transform:translateY(0);pointer-events:auto;}
-.floating-rsvp:hover{transform:translateY(-3px);}
-.music-toggle{
-  position:fixed;bottom:26px;left:26px;z-index:900;
-  width:46px;height:46px;border-radius:50%;background:rgba(255,255,255,.7);backdrop-filter:blur(10px);
-  border:1px solid rgba(198,161,91,.35);display:flex;align-items:center;justify-content:center;cursor:pointer;
-  box-shadow:0 8px 24px rgba(57,51,42,.1);
-}
-.music-toggle svg{width:18px;height:18px;fill:var(--gold-deep);}
-@media (max-width:560px){
-  .floating-rsvp{padding:13px 18px;font-size:10px;bottom:16px;right:16px;}
-  .music-toggle{bottom:16px;left:16px;width:40px;height:40px;}
-}
+
 </style>
 </head>
 <body>
@@ -739,14 +718,6 @@ footer .credit a{color:var(--gold-light);}
   <div class="credit">Website by <a href="https://www.facebook.com/loveanne.ph" target="_blank" rel="noopener">Love, Anne</a></div>
 </footer>
 
-<a href="#rsvp" class="floating-rsvp" id="floatRsvp">RSVP</a>
-<div class="music-toggle" id="musicToggle" title="Toggle music">
-  <svg id="musicIcon" viewBox="0 0 24 24"><path d="M9 18V5l12-2v13"/><circle cx="6" cy="18" r="3"/><circle cx="18" cy="16" r="3"/></svg>
-</div>
-<audio id="bgm" loop preload="none">
-  <!-- Add your instrumental track URL to the source below -->
-  <source src="" type="audio/mpeg">
-</audio>
 
 <script>
 // ===== Loader =====
@@ -757,14 +728,12 @@ window.addEventListener('load',()=>{
 // ===== Nav solid on scroll + progress + floating rsvp =====
 const nav = document.getElementById('nav');
 const progress = document.getElementById('progress');
-const floatRsvp = document.getElementById('floatRsvp');
 const heroEl = document.querySelector('.hero');
 window.addEventListener('scroll',()=>{
   const y = window.scrollY;
   nav.classList.toggle('solid', y > 60);
   const h = document.documentElement.scrollHeight - window.innerHeight;
   progress.style.width = (h>0 ? (y/h*100) : 0) + '%';
-  floatRsvp.classList.toggle('show', y > heroEl.offsetHeight * 0.8);
 },{passive:true});
 
 // ===== Mobile nav toggle =====
@@ -826,16 +795,7 @@ document.querySelectorAll('.g-item').forEach(item=>{
 document.getElementById('lbClose').addEventListener('click',()=>lightbox.classList.remove('open'));
 lightbox.addEventListener('click',(e)=>{ if(e.target===lightbox) lightbox.classList.remove('open'); });
 
-// ===== Background music toggle =====
-const bgm = document.getElementById('bgm');
-const musicToggle = document.getElementById('musicToggle');
-let playing = false;
-musicToggle.addEventListener('click',()=>{
-  if(!bgm.src || !bgm.querySelector('source').src){ return; }
-  if(playing){ bgm.pause(); } else { bgm.play().catch(()=>{}); }
-  playing = !playing;
-  musicToggle.style.opacity = playing ? '1' : '0.6';
-});
+
 </script>
 </body>
 </html>
