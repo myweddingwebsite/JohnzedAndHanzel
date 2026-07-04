@@ -321,9 +321,10 @@ img{max-width:100%;display:block;}
 .ent-card li{font-size:14.5px;color:var(--ink);padding:4px 0;font-weight:400;}
 .ent-card.wide{grid-column:span 3;}
 @media (max-width:860px){.ent-card.wide{grid-column:span 2;}}
-@media (max-width:560px){.ent-card.wide{grid-column:span 1;}}
+@media (max-width:560px){.ent-card.wide{grid-column:span 1;padding:24px 16px;}}
 .ent-card.wide ul{display:grid;grid-template-columns:1fr 1fr;column-gap:30px;row-gap:2px;}
-@media (max-width:560px){.ent-card.wide ul{grid-template-columns:1fr;}}
+@media (max-width:560px){.ent-card.wide ul{grid-template-columns:1fr 1fr;column-gap:10px;}
+.ent-card.wide li{font-size:12px;}}
 .ent-card:not(.wide){text-align:center;}
 .ent-card:not(.wide) h4{text-align:center;}
 
